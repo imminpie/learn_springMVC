@@ -29,4 +29,9 @@ public class BookServiceImpl implements BookService {
 		return bookDao.getInfo(id);
 	}
 
+	@Override
+	public BookVO update(int id) {
+		return bookDao.update(id);
+	}
+
 }

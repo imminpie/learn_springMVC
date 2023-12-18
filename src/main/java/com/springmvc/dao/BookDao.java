@@ -26,4 +26,8 @@ public class BookDao {
 		return this.sqlSessionTemplate.selectOne("book.getInfo", id);
 	}
 
+	public BookVO update(int id) {
+		return this.sqlSessionTemplate.selectOne("book.getInfo", id);
+	}
+
 }

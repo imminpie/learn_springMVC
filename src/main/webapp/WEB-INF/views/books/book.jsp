@@ -49,7 +49,9 @@
 				<p><b>출판일</b> : ${book.releaseDate}</p>
 				<p><b>분류</b> : ${book.category}</p>
 				<h4>${book.price}원</h4>
-				<br /> <a href="<c:url value="/books"/>" class="btn btn-secondary">도서 목록 &raquo;</a>
+				<br />
+				<a href="<c:url value="/books"/>" class="btn btn-secondary">도서 목록 &raquo;</a>
+				<a href="<c:url value="/books/edit/${ book.id }"/>" class="btn btn-secondary">수정 &raquo;</a>
 			</div>
 		</div>
 	</div>
