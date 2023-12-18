@@ -63,5 +63,14 @@ public class BookController {
 		}
 		return "redirect:/books";
 	}
+	
+	@RequestMapping(value = "/books/delete/{id}", method = RequestMethod.GET)
+	public String delete(@PathVariable int id, Model model) {
+		int affectRowCount = bookService.delete(id);
+		if (affectRowCount == 1) {
+			return "redirect:/books";
+		}
+		return "redirect:/books";
+	}
 
 }

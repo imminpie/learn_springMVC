@@ -53,4 +53,9 @@
 			ID = #{id}
 	</update>
 	
+	<delete id="delete">
+		DELETE FROM BOOKS
+		WHERE ID = #{id}
+	</delete>
+	
 </mapper>

@@ -16,4 +16,6 @@ public interface BookService {
 
 	int edit(BookVO bookVO);
 
+	int delete(int id);
+
 }

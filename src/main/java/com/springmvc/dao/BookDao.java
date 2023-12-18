@@ -34,4 +34,8 @@ public class BookDao {
 		return this.sqlSessionTemplate.update("book.edit", bookVO);
 	}
 
+	public int delete(int id) {
+		return this.sqlSessionTemplate.delete("book.delete", id);
+	}
+
 }
