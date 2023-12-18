@@ -10,4 +10,6 @@ public interface BookService {
 
 	List<BookVO> getList();
 
+	BookVO getInfo(int id);
+
 }

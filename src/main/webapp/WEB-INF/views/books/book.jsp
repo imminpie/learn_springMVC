@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page pageEncoding="utf-8" session="false"%>
 <html>
 <head>
@@ -8,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="<c:url value="/css/bootstrap.min.css" />" rel="stylesheet">
-<title>도서 목록</title>
+<title>도서 상세 정보</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -26,29 +25,32 @@
 	</nav>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">도서 목록</h1>
+			<h1 class="display-3">도서 정보</h1>
 		</div>
 	</div>
 	<div class="container">
-		<div class="row" align="center">
-			<c:forEach items="${ books }" var="book">
-				<div class="col-md-4">
-					<c:choose>
-						<c:when test="${ book.image == null }">
-							<img src="<c:url value="${ book.id }.png"/>" style="width: 100%;"/>
-						</c:when>
-						<c:otherwise>
-							<img src="<c:url value="${ book.image }"/>" style="width: 100%;"/>
-						</c:otherwise>
-					</c:choose>
-					<h3>${ book.title }</h3>
-					<p>${ book.author }</p>
-					<p>${book.publisher} | ${book.releaseDate}</p>
-					<p align=left>${fn:substring(book.description, 0, 100)}...</p>
-					<p><fmt:formatNumber value="${book.price}" pattern="#,###" />원</p>
-					<p><a href="<c:url value="/books/book?id=${book.id}"/>" class="btn btn-Secondary" role="button">상세정보 &raquo;</a></p>
-				</div>
-			</c:forEach>
+		<div class="row">
+			<div class="col-md-4">
+				<c:choose>
+					<c:when test="${ book.image == null }">
+						<img src="<c:url value="${ book.id }.png"/>" />
+					</c:when>
+					<c:otherwise>
+						<img src="<c:url value="${ book.image }"/>" style="height: 310px;" />
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<div class="col-md-8">
+				<h3>${ book.title }</h3>
+				<p>${ book.description }</p>
+				<br />
+				<p><b>저자</b> : ${book.author}</p>
+				<p><b>출판사</b> : ${book.publisher}</p>
+				<p><b>출판일</b> : ${book.releaseDate}</p>
+				<p><b>분류</b> : ${book.category}</p>
+				<h4>${book.price}원</h4>
+				<br /> <a href="<c:url value="/books"/>" class="btn btn-secondary">도서 목록 &raquo;</a>
+			</div>
 		</div>
 	</div>
 </body>

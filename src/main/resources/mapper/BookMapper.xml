@@ -5,6 +5,12 @@
 	<select id="getList" resultType="com.springmvc.vo.BookVO">
 		SELECT * FROM BOOKS
 	</select>
+	
+	<select id="getInfo" resultType="com.springmvc.vo.BookVO">
+		SELECT * FROM BOOKS
+		WHERE 1 = 1
+		AND ID = #{id}
+	</select>
 
 	<insert id="create" parameterType="com.springmvc.vo.BookVO">
 		INSERT INTO BOOKS

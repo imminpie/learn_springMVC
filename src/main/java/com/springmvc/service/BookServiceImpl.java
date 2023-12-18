@@ -24,4 +24,9 @@ public class BookServiceImpl implements BookService {
 		return bookDao.getList();
 	}
 
+	@Override
+	public BookVO getInfo(int id) {
+		return bookDao.getInfo(id);
+	}
+
 }

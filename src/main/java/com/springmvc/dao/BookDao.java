@@ -22,4 +22,8 @@ public class BookDao {
 		return this.sqlSessionTemplate.selectList("book.getList");
 	}
 
+	public BookVO getInfo(int id) {
+		return this.sqlSessionTemplate.selectOne("book.getInfo", id);
+	}
+
 }
