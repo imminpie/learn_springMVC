@@ -12,4 +12,9 @@ public class BookController {
 		return "books/index";
 	}
 
+	@RequestMapping(value = "/books/new", method = RequestMethod.GET)
+	public String newBook() {
+		return "books/new";
+	}
+
 }
