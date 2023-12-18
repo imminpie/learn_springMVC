@@ -1,5 +1,7 @@
 package com.springmvc.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public int create(BookVO bookVO) {
 		return bookDao.create(bookVO);
+	}
+
+	@Override
+	public List<BookVO> getList() {
+		return bookDao.getList();
 	}
 
 }

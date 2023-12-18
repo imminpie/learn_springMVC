@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page pageEncoding="utf-8" session="false"%>
 <html>
 <head>
@@ -25,6 +27,27 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">도서 목록</h1>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row" align="center">
+			<c:forEach items="${ books }" var="book">
+				<div class="col-md-4">
+					<c:choose>
+						<c:when test="${ book.image == null }">
+							<img src="<c:url value="${ book.id }.png"/>" style="width: 100%;"/>
+						</c:when>
+						<c:otherwise>
+							<img src="<c:url value="${ book.image }"/>" style="width: 100%;"/>
+						</c:otherwise>
+					</c:choose>
+					<h3>${ book.title }</h3>
+					<p>${ book.author }</p>
+					<p>${book.publisher} | ${book.releaseDate}</p>
+					<p align=left>${fn:substring(book.description, 0, 100)}...</p>
+					<p><fmt:formatNumber value="${book.price}" pattern="#,###" />원</p>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 </body>

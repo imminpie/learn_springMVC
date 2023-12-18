@@ -1,7 +1,10 @@
 package com.springmvc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +19,9 @@ public class BookController {
 	BookService bookService;
 	
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
-	public String index() {
+	public String index(Model model) {
+		List<BookVO> result = bookService.getList();
+		model.addAttribute("books", result);
 		return "books/index";
 	}
 
