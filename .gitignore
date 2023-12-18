@@ -1,0 +1,24 @@
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.classpath
+.project
+.springBeans
+
+### sbteclipse plugin ###
+.target
+target/
+src/test
+
+### Eclipse Patch ###
+# Spring Boot Tooling
+.sts4-cache/
