@@ -37,4 +37,20 @@
 			)
 	</insert>
 	
+	<update id="edit">
+		UPDATE BOOKS
+		SET
+			  TITLE = #{title}
+			, PRICE = #{price}
+			, AUTHOR = #{author}
+			, DESCRIPTION = #{description}
+			, PUBLISHER = #{publisher}
+			, CATEGORY = #{category}
+			, RELEASE_DATE = #{releaseDate}
+			, CONDITIONS = #{conditions}
+			, IMAGE = #{image}
+		WHERE
+			ID = #{id}
+	</update>
+	
 </mapper>

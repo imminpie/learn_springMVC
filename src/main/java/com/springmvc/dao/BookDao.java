@@ -30,4 +30,8 @@ public class BookDao {
 		return this.sqlSessionTemplate.selectOne("book.getInfo", id);
 	}
 
+	public int edit(BookVO bookVO) {
+		return this.sqlSessionTemplate.update("book.edit", bookVO);
+	}
+
 }

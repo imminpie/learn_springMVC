@@ -54,5 +54,14 @@ public class BookController {
 		model.addAttribute("book", book);
 		return "books/edit";
 	}
+	
+	@RequestMapping(value = "/books/edit/{id}", method = RequestMethod.POST)
+	public String edit(@PathVariable int id, @ModelAttribute BookVO bookVO) {
+		int affectRowCount = bookService.edit(bookVO);
+		if (affectRowCount == 1) {
+			return "redirect:/books/book?id=" + id;
+		}
+		return "redirect:/books";
+	}
 
 }
