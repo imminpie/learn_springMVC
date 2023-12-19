@@ -6,13 +6,6 @@
 <title>Home</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand navbar-dark bg-dark">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="./">Home</a>
-			</div>
-		</div>
-	</nav>
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">Welcome to BookMarket</h1>
@@ -23,9 +16,5 @@
 			<h3>Welcome to Web Shopping Mall</h3>
 		</div>
 	</div>
-	<footer class="container">
-		<hr>
-		<p>&copy; WebMarket</p>
-	</footer>
 </body>
 </html>

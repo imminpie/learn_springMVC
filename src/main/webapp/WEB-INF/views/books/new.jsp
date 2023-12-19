@@ -9,19 +9,6 @@
 <title>도서 등록</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand navbar-dark bg-dark">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/">Home</a>
-			</div>
-			<div>
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="<c:url value="/books"/>">도서목록</a></li>
-					<li class="nav-item"><a class="nav-link" href="<c:url value="/books/new"/>">도서등록</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">도서 등록</h1>
