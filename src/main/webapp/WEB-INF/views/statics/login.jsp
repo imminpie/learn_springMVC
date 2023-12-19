@@ -22,6 +22,7 @@
 			</div>
 			<div class="form-group row">
 				<button class="btn btn-lg btn-success btn-block" type="submit">로그인</button>
+				<a href="<c:url value="/signup"/>" class="btn btn-lg btn-primary btn-block">회원가입</a>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 			</div>
 		</form>
