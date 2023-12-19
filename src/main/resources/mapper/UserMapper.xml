@@ -27,6 +27,22 @@
 		AND EMAIL = #{email}
 	</select>
 	
+	<select id="selectUserById" resultType="com.springmvc.vo.UserVO">
+		SELECT
+			  ID
+			, EMAIL
+		FROM USERS
+		WHERE 1 = 1
+		AND ID = #{userId}
+	</select>
+	
+	<delete id="deleteAuthority">
+		DELETE FROM AUTHORITIES
+		WHERE 1 = 1
+		AND EMAIL = #{email}
+		AND AUTHORITY = #{role}
+	</delete>
+	
 	<insert id="signup">
 		INSERT INTO USERS
 			( EMAIL

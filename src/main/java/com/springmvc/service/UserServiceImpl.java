@@ -40,11 +40,11 @@ public class UserServiceImpl implements UserService {
 	public List<UserVO> selectUsers() {
 		List<UserVO> users = userDao.selectUsers();
 		List<UserVO> list = new ArrayList<UserVO>();
-		
-		for(UserVO user : users) {
+
+		for (UserVO user : users) {
 			String email = user.getEmail();
 			List<AuthorityVO> authorities = userDao.selectAuthority(email);
-			
+
 			UserVO userVO = new UserVO();
 			userVO.setId(user.getId());
 			userVO.setEmail(email);
@@ -53,6 +53,22 @@ public class UserServiceImpl implements UserService {
 			list.add(userVO);
 		}
 		return list;
+	}
+
+	@Override
+	public UserVO selectUserById(int userId) {
+		UserVO user = userDao.selectUserById(userId);
+		List<AuthorityVO> authorities = userDao.selectAuthority(user.getEmail());
+		user.setAuthorities(authorities);
+		return user;
+	}
+
+	@Override
+	public void deleteAuthority(String email, String role) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("email", email);
+		map.put("role", role);
+		userDao.deleteAuthority(map);
 	}
 
 }

@@ -15,6 +15,15 @@ public class UserVO {
 	public List<AuthorityVO> getAuthorities() {
 		return authorities;
 	}
+	
+	public boolean hasRole(String role) {
+		for (AuthorityVO auth : authorities) {
+			if (auth.isRole(role)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public void setAuthorities(List<AuthorityVO> authorities) {
 		this.authorities = authorities;

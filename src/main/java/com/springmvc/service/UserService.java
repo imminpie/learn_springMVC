@@ -14,4 +14,8 @@ public interface UserService {
 
 	List<UserVO> selectUsers();
 
+	UserVO selectUserById(int userId);
+
+	void deleteAuthority(String email, String string);
+
 }

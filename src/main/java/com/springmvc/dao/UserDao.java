@@ -36,4 +36,12 @@ public class UserDao {
 		return this.sqlSessionTemplate.selectList("user.selectAuthority", email);
 	}
 
+	public UserVO selectUserById(int userId) {
+		return this.sqlSessionTemplate.selectOne("user.selectUserById", userId);
+	}
+
+	public void deleteAuthority(Map<String, Object> map) {
+		this.sqlSessionTemplate.delete("user.deleteAuthority", map);
+	}
+
 }

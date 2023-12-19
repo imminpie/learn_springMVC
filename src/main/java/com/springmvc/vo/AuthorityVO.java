@@ -4,6 +4,10 @@ public class AuthorityVO {
 
 	private String email;
 	private String authority;
+	
+	public boolean isRole(String role) {
+		return authority.equals("ROLE_" + role.toUpperCase());
+	}
 
 	public String getEmail() {
 		return email;
