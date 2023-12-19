@@ -23,12 +23,14 @@
 			( BOOK_ID
 			, EMAIL
 			, COMMENT
+			, RATING
 			, CREATE_DATE
 			)
 		VALUES (
 			  #{bookId}
 			, #{email}
 			, #{comment}
+			, #{rating}
 			, DATE_FORMAT(NOW(), '%Y/%m/%d %H:%i:%s')
 			) 
 	</insert>

@@ -48,6 +48,13 @@
 			<div class="col-md-12">
 				<h2>리뷰</h2>
 				<form action="<c:url value="/books/reviews"/>" method="post">
+					
+					<select name="rating" class="custom-select" style="width: 200px;">
+						<c:forEach items="${ ratingOptions }" var="rating" >
+							<option value="${ rating.key }">${ rating.value }</option>
+						</c:forEach>
+					</select>
+					
 					<textarea name="comment" class="form-control" rows="3" style="resize: none;"></textarea>
 					<input type="hidden" name="bookId" value="${ book.id }">
 					<button type="submit" class="btn btn-block btn-primary" >리뷰 등록</button>
@@ -59,11 +66,13 @@
 					<table class="table table-stripped">
 						<colgroup>
 							<col style="width: 30%;"/>
-							<col style="width: 70%;"/>
+							<col style="width: 20%;"/>
+							<col style="width: 50%;"/>
 						</colgroup>
 						<thead>
 							<tr>
 								<th>사용자</th>
+								<th>별점</th>
 								<th>내용</th>
 							</tr>
 						</thead>
@@ -71,6 +80,11 @@
 							<c:forEach var="review" items="${ reviews }">
 								<tr>
 									<td>${ review.email }</td>
+									<td>
+										<c:forEach var="rating" items="${ ratingOptions }" varStatus="status" begin="1" end="${ review.rating }">
+											★
+										</c:forEach>
+									</td>
 									<td>${ review.comment }</td>
 								</tr>
 							</c:forEach>

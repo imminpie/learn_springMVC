@@ -1,7 +1,9 @@
 package com.springmvc.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,8 +50,17 @@ public class BookController {
 		BookVO book = bookService.getInfo(id);
 		List<ReviewVO> reviews = bookService.getReviews(id);
 		
+		Map<Integer, String> ratingOptions = new HashMap<Integer, String>();
+		ratingOptions.put(0, "☆☆☆☆☆");
+		ratingOptions.put(1, "★☆☆☆☆");
+		ratingOptions.put(2, "★★☆☆☆");
+		ratingOptions.put(3, "★★★☆☆");
+		ratingOptions.put(4, "★★★★☆");
+		ratingOptions.put(5, "★★★★★");
+		
 		model.addAttribute("book", book);
 		model.addAttribute("reviews", reviews);
+		model.addAttribute("ratingOptions", ratingOptions);
 		return "books/book";
 	}
 	

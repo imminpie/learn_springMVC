@@ -6,6 +6,7 @@ public class ReviewVO {
 	private String email;
 	private String comment;
 	private String createDate;
+	private int rating;
 
 	public int getBookId() {
 		return bookId;
@@ -38,11 +39,19 @@ public class ReviewVO {
 	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
+	
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
 
 	@Override
 	public String toString() {
 		return "ReviewVO [bookId=" + bookId + ", email=" + email + ", comment=" + comment + ", createDate=" + createDate
-				+ "]";
+				+ ", rating=" + rating + "]";
 	}
 
 }
