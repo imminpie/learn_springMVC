@@ -1,12 +1,15 @@
 package com.springmvc.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springmvc.dao.UserDao;
+import com.springmvc.vo.AuthorityVO;
 import com.springmvc.vo.UserVO;
 
 @Service
@@ -31,6 +34,25 @@ public class UserServiceImpl implements UserService {
 		map.put("email", email);
 		map.put("authority", authority);
 		userDao.insertAuthority(map);
+	}
+
+	@Override
+	public List<UserVO> selectUsers() {
+		List<UserVO> users = userDao.selectUsers();
+		List<UserVO> list = new ArrayList<UserVO>();
+		
+		for(UserVO user : users) {
+			String email = user.getEmail();
+			List<AuthorityVO> authorities = userDao.selectAuthority(email);
+			
+			UserVO userVO = new UserVO();
+			userVO.setId(user.getId());
+			userVO.setEmail(email);
+			userVO.setAuthorities(authorities);
+
+			list.add(userVO);
+		}
+		return list;
 	}
 
 }

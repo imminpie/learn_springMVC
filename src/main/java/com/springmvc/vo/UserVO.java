@@ -1,5 +1,7 @@
 package com.springmvc.vo;
 
+import java.util.List;
+
 public class UserVO {
 
 	private int id;
@@ -7,6 +9,16 @@ public class UserVO {
 	private String password;
 	private String repassword;
 	private String birth;
+	
+	List<AuthorityVO> authorities;
+
+	public List<AuthorityVO> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(List<AuthorityVO> authorities) {
+		this.authorities = authorities;
+	}
 
 	public int getId() {
 		return id;

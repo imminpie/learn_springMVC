@@ -11,6 +11,22 @@
 		AND EMAIL = #{email}
 	</select>
 	
+	<select id="selectUsers" resultType="com.springmvc.vo.UserVO">
+		SELECT
+			  ID
+			, EMAIL
+		FROM USERS
+		WHERE 1 = 1
+	</select>
+	
+	<select id="selectAuthority" resultType="com.springmvc.vo.AuthorityVO">
+		SELECT 
+			  AUTHORITY
+		FROM AUTHORITIES
+		WHERE 1 = 1
+		AND EMAIL = #{email}
+	</select>
+	
 	<insert id="signup">
 		INSERT INTO USERS
 			( EMAIL
