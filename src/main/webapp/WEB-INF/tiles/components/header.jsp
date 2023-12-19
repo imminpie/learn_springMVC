@@ -22,6 +22,9 @@
 				        <a class="nav-link" href="<c:url value="/login"/>">로그인</a>
 				    </sec:authorize>
 				</li>
+				<sec:authorize access="hasRole('ADMIN')">				
+					<li class="nav-item"><a class="nav-link" href="<c:url value="/admin"/>">관리자</a></li>
+				</sec:authorize>
 				<li class="nav-item">
 				    <sec:authorize access="isAuthenticated()">
 				        <form:form action="${pageContext.request.contextPath}/logout" method="POST" style="margin-bottom: 0;">
