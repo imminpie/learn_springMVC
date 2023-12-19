@@ -11,4 +11,29 @@
 		AND EMAIL = #{email}
 	</select>
 	
+	<insert id="signup">
+		INSERT INTO USERS
+			( EMAIL
+			, PASSWORD
+			, ENABLED
+			, BIRTH
+			)
+		VALUES
+			( #{email}
+			, #{password}
+			, true
+			, #{birth}
+			)
+	</insert>
+	
+	<insert id="insertAuthority">
+		INSERT INTO AUTHORITIES 
+			( EMAIL
+			, AUTHORITY
+			)
+		VALUES 
+			( #{email}
+			, #{authority})
+	</insert>
+	
 </mapper>
