@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.springmvc.dao.BookDao;
 import com.springmvc.vo.BookVO;
+import com.springmvc.vo.ReviewVO;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -42,6 +43,16 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public int delete(int id) {
 		return bookDao.delete(id);
+	}
+
+	@Override
+	public int createReviews(ReviewVO reviewVO) {
+		return bookDao.createReviews(reviewVO);
+	}
+
+	@Override
+	public List<ReviewVO> getReviews(int id) {
+		return bookDao.getReviews(id);
 	}
 
 }

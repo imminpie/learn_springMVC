@@ -3,6 +3,7 @@ package com.springmvc.service;
 import java.util.List;
 
 import com.springmvc.vo.BookVO;
+import com.springmvc.vo.ReviewVO;
 
 public interface BookService {
 
@@ -17,5 +18,9 @@ public interface BookService {
 	int edit(BookVO bookVO);
 
 	int delete(int id);
+
+	List<ReviewVO> getReviews(int id);
+
+	int createReviews(ReviewVO reviewVO);
 
 }

@@ -45,6 +45,39 @@
 					<a href="<c:url value="/books/delete/${ book.id }"/>" class="btn btn-danger btn-secondary">삭제 &raquo;</a>
 				</sec:authorize>
 			</div>
+			<div class="col-md-12">
+				<h2>리뷰</h2>
+				<form action="<c:url value="/books/reviews"/>" method="post">
+					<textarea name="comment" class="form-control" rows="3" style="resize: none;"></textarea>
+					<input type="hidden" name="bookId" value="${ book.id }">
+					<button type="submit" class="btn btn-block btn-primary" >리뷰 등록</button>
+					<sec:csrfInput/>
+				</form>
+			</div>
+			<c:if test="${ fn:length(reviews) gt 0 }">
+				<div class="col-md-12">
+					<table class="table table-stripped">
+						<colgroup>
+							<col style="width: 30%;"/>
+							<col style="width: 70%;"/>
+						</colgroup>
+						<thead>
+							<tr>
+								<th>사용자</th>
+								<th>내용</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="review" items="${ reviews }">
+								<tr>
+									<td>${ review.email }</td>
+									<td>${ review.comment }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </body>

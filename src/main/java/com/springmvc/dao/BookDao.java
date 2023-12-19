@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.springmvc.vo.BookVO;
+import com.springmvc.vo.ReviewVO;
 
 @Repository
 public class BookDao {
@@ -36,6 +37,14 @@ public class BookDao {
 
 	public int delete(int id) {
 		return this.sqlSessionTemplate.delete("book.delete", id);
+	}
+	
+	public int createReviews(ReviewVO reviewVO) {
+		return this.sqlSessionTemplate.insert("book.createReviews", reviewVO);
+	}
+
+	public List<ReviewVO> getReviews(int id) {
+		return this.sqlSessionTemplate.selectList("book.getReviews", id);
 	}
 
 }

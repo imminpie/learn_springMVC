@@ -1,5 +1,6 @@
 package com.springmvc.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springmvc.service.BookService;
 import com.springmvc.vo.BookVO;
+import com.springmvc.vo.ReviewVO;
 
 @Controller
 public class BookController {
@@ -44,7 +46,10 @@ public class BookController {
 	@RequestMapping(value = "/books/book", method = RequestMethod.GET)
 	public String info(@RequestParam("id") int id, Model model) {
 		BookVO book = bookService.getInfo(id);
+		List<ReviewVO> reviews = bookService.getReviews(id);
+		
 		model.addAttribute("book", book);
+		model.addAttribute("reviews", reviews);
 		return "books/book";
 	}
 	
@@ -71,6 +76,17 @@ public class BookController {
 			return "redirect:/books";
 		}
 		return "redirect:/books";
+	}
+	
+	@RequestMapping(value = "/books/reviews", method = RequestMethod.POST)
+	public String createReviews(@ModelAttribute ReviewVO reviewVO, Principal principal) {
+		reviewVO.setEmail(principal.getName());
+		
+		int affectRowCount = bookService.createReviews(reviewVO);
+		if (affectRowCount == 1) {
+			return "redirect:/books/book?id=" + reviewVO.getBookId();
+		}
+		return "redirect:/books/book?id=" + reviewVO.getBookId();
 	}
 
 }

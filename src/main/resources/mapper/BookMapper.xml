@@ -11,6 +11,27 @@
 		WHERE 1 = 1
 		AND ID = #{id}
 	</select>
+	
+	<select id="getReviews" resultType="com.springmvc.vo.ReviewVO">
+		SELECT * FROM REVIEWS
+		WHERE 1 = 1
+		AND BOOK_ID = #{bookId}
+	</select>
+	
+	<insert id="createReviews" parameterType="com.springmvc.vo.ReviewVO">
+		INSERT INTO REVIEWS
+			( BOOK_ID
+			, EMAIL
+			, COMMENT
+			, CREATE_DATE
+			)
+		VALUES (
+			  #{bookId}
+			, #{email}
+			, #{comment}
+			, DATE_FORMAT(NOW(), '%Y/%m/%d %H:%i:%s')
+			) 
+	</insert>
 
 	<insert id="create" parameterType="com.springmvc.vo.BookVO">
 		INSERT INTO BOOKS
