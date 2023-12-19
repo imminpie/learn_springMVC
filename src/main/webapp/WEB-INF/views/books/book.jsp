@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page pageEncoding="utf-8" session="false"%>
 <html>
 <head>
@@ -39,8 +40,10 @@
 				<h4><fmt:formatNumber value="${book.price}" pattern="#,###" />원</h4>
 				<br />
 				<a href="<c:url value="/books"/>" class="btn btn-secondary">도서 목록 &raquo;</a>
-				<a href="<c:url value="/books/edit/${ book.id }"/>" class="btn btn-secondary">수정 &raquo;</a>
-				<a href="<c:url value="/books/delete/${ book.id }"/>" class="btn btn-danger btn-secondary">삭제 &raquo;</a>
+				<sec:authorize access="hasRole('ADMIN')">
+					<a href="<c:url value="/books/edit/${ book.id }"/>" class="btn btn-secondary">수정 &raquo;</a>
+					<a href="<c:url value="/books/delete/${ book.id }"/>" class="btn btn-danger btn-secondary">삭제 &raquo;</a>
+				</sec:authorize>
 			</div>
 		</div>
 	</div>

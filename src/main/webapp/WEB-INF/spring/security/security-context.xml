@@ -18,6 +18,13 @@
         <sec:intercept-url pattern="/login" access="permitAll" />
         <sec:intercept-url pattern="/signup/**" access="permitAll" />
         <sec:intercept-url pattern="/**" access="isAuthenticated()" />
+        
+        <!-- 관리자 권한을 가진 사용자만 접근 가능 -->
+		<sec:intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
+		<sec:intercept-url pattern="/books/new/**" access="hasRole('ADMIN')"/>
+		<sec:intercept-url pattern="/books/edit/**" access="hasRole('ADMIN')"/>
+		<sec:intercept-url pattern="/books/delete/**" access="hasRole('ADMIN')"/>
+		
         <sec:form-login login-page="/login"
                         login-processing-url="/user/login"
                         default-target-url="/"

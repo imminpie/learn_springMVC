@@ -12,7 +12,11 @@
 		<div>
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="<c:url value="/books"/>">도서목록</a></li>
-				<li class="nav-item"><a class="nav-link" href="<c:url value="/books/new"/>">도서등록</a></li>
+				<sec:authorize access="hasRole('ADMIN')">				
+					<li class="nav-item">
+						<a class="nav-link" href="<c:url value="/books/new"/>">도서등록</a>
+					</li>
+				</sec:authorize>
 				<li class="nav-item">
 				    <sec:authorize access="isAnonymous()">
 				        <a class="nav-link" href="<c:url value="/login"/>">로그인</a>
