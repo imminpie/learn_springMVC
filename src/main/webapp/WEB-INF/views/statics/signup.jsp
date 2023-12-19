@@ -9,7 +9,7 @@
 	</div>
 </div>
 <div class="container">
-	<form:form modelAttribute="user" method="post" >
+	<form:form modelAttribute="user" method="post" onsubmit="return fn_checkForm();">
 		<div class="form-group row">
 			<label class="col-sm-3 control-label">이메일</label>
 			<div class="col-sm-5">
@@ -18,7 +18,7 @@
 				<span class="err_name"></span>
 			</div>
 			<div class="col-sm-4">
-				<button type="button" id="checkBtn" class="btn btn-success" >중복확인</button>
+				<button type="button" id="checkBtn" class="btn btn-success" onclick="fn_checkDuplication();">중복확인</button>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -49,3 +49,84 @@
 		</div>
 	</form:form>
 </div>
+<script>
+	let checkYn = "N";
+	
+	function fn_checkDuplication() {
+		
+		let email = document.getElementById('email').value;
+		
+		if(email.length == 0) {
+			checkYn = "N";
+			document.querySelector('.err_name').textContent = "* 이메일을 입력하세요.";
+		} else {
+			
+			$.ajax({
+				type : "GET",
+				url : "/signup/checkDuplication",
+				data : {email : email},
+				success : function(data) {
+					if(data == 0) {
+						document.querySelector('.err_name').textContent = "* 사용 가능합니다.";
+				        checkYn = "Y";
+					} else {
+						document.querySelector('.err_name').textContent = "* 이메일이 중복되었습니다.";
+				        checkYn = "N";
+					}
+				},
+				error: function (xhr, status, error) {
+					console.log(error);
+				},
+			})
+			
+		}
+		
+	}
+	
+	function fn_checkForm() {
+		
+		let email = document.getElementById("email");
+		let password = document.getElementById("password");
+		let repassword = document.getElementById("repassword");
+		let birth = document.getElementById("birth");
+
+		if(checkYn == "N") {
+			document.querySelector('.err_name').textContent = "* 중복확인 버튼을 클릭하세요.";
+			return false;
+		}
+		
+		if(email.value == "") {
+			document.querySelector('.err_name').textContent = "* 이메일을 입력하세요.";
+			return false;
+		}
+		
+		if(password.value == "") {
+			document.querySelector(".err_password").textContent = "* 비밀번호를 입력하세요.";
+			return false;
+		}
+		
+		if(repassword.value == "") {
+			document.querySelector(".err_repassword").textContent = "* 비밀번호를 입력하세요.";
+			return false;
+		}
+		
+		if(repassword.value !== "" && password.value !== repassword.value) {
+			document.querySelector(".err_password").textContent = "* 비밀번호를 확인해 주세요.";
+			return false;
+		}
+		
+		if(birth.value == "") {
+			document.querySelector(".err_birth").textContent = "* 생년월일을 입력해 주세요.";
+			return false;
+		}
+
+		
+		if(checkBtn == "Y") {
+			let goForm = document.getElementById("signupForm");
+			goForm.action = "/signup";
+			goForm.method = "POST";
+			goForm.submit();
+		}
+		
+	}
+</script>
