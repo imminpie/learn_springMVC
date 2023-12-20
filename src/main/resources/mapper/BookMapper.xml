@@ -16,6 +16,14 @@
 		SELECT * FROM REVIEWS
 		WHERE 1 = 1
 		AND BOOK_ID = #{bookId}
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getReviewsCnt" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM REVIEWS
+		WHERE BOOK_ID = #{id}
 	</select>
 	
 	<insert id="createReviews" parameterType="com.springmvc.vo.ReviewVO">

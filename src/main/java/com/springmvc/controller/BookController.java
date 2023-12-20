@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springmvc.service.BookService;
 import com.springmvc.vo.BookVO;
+import com.springmvc.vo.Criteria;
+import com.springmvc.vo.PageMaker;
 import com.springmvc.vo.ReviewVO;
 
 @Controller
@@ -46,9 +48,14 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/books/book", method = RequestMethod.GET)
-	public String info(@RequestParam("id") int id, Model model) {
+	public String info(@RequestParam("id") int id, Model model, Criteria criteria) {
 		BookVO book = bookService.getInfo(id);
-		List<ReviewVO> reviews = bookService.getReviews(id);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalPosts(bookService.getReviewsCnt(id));
+		
+		List<ReviewVO> reviews = bookService.getReviews(id, criteria);
 		
 		Map<Integer, String> ratingOptions = new HashMap<Integer, String>();
 		ratingOptions.put(0, "☆☆☆☆☆");
@@ -60,6 +67,7 @@ public class BookController {
 		
 		model.addAttribute("book", book);
 		model.addAttribute("reviews", reviews);
+		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("ratingOptions", ratingOptions);
 		return "books/book";
 	}

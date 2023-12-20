@@ -1,6 +1,7 @@
 package com.springmvc.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,12 @@ public class BookDao {
 		return this.sqlSessionTemplate.insert("book.createReviews", reviewVO);
 	}
 
-	public List<ReviewVO> getReviews(int id) {
-		return this.sqlSessionTemplate.selectList("book.getReviews", id);
+	public List<ReviewVO> getReviews(Map<String, Object> map) {
+		return this.sqlSessionTemplate.selectList("book.getReviews", map);
+	}
+
+	public int getReviewsCnt(int id) {
+		return this.sqlSessionTemplate.selectOne("book.getReviewsCnt", id);
 	}
 
 }

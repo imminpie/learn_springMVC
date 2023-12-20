@@ -91,6 +91,25 @@
 						</tbody>
 					</table>
 				</div>
+				<div id="paginationBox row" >
+					<ul class="pagination justify-content-center">
+						<c:if test="${pageMaker.prev }">
+						    <li class="page-item">
+						        <a class="page-link" href='<c:url value="/books/book?id=${book.id}&currentPage=${pageMaker.startPage-1 }"/>'>이전</a>
+						    </li>
+					    </c:if>
+					    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+						    <li class="page-item <c:out value="${pageMaker.criteria.currentPage == pageNum ? 'active' : ''}"/> ">
+						        <a class="page-link" href='<c:url value="/books/book?id=${book.id}&currentPage=${pageNum }"/>'>${pageNum}</a>
+						    </li>
+					    </c:forEach>
+					    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+						    <li class="page-item">
+						        <a class="page-link" href='<c:url value="/books/book?id=${book.id}&currentPage=${pageMaker.endPage+1 }"/>'>다음</a>
+						    </li>
+					    </c:if>
+					</ul>
+				</div>
 			</c:if>
 		</div>
 	</div>
